@@ -244,3 +244,69 @@
   });
 })();
 
+// Interactive Table of Contents
+(function() {
+  const toc = document.getElementById('post-toc');
+  if (!toc) return;
+  
+  const tocLinks = toc.querySelectorAll('a[href^="#"]');
+  const headings = Array.from(tocLinks).map(link => {
+    const href = link.getAttribute('href');
+    const id = href.substring(1);
+    const element = document.getElementById(id);
+    return { link, element, id };
+  }).filter(item => item.element);
+  
+  if (headings.length === 0) return;
+  
+  function updateActiveTOCItem() {
+    const scrollPosition = window.scrollY + 100; // Offset for header
+    
+    let activeHeading = null;
+    
+    // Find the heading that's currently in view
+    for (let i = headings.length - 1; i >= 0; i--) {
+      const { element } = headings[i];
+      if (element && element.offsetTop <= scrollPosition) {
+        activeHeading = headings[i];
+        break;
+      }
+    }
+    
+    // Update active state
+    tocLinks.forEach(link => link.classList.remove('active'));
+    if (activeHeading) {
+      activeHeading.link.classList.add('active');
+      
+      // Scroll TOC to show active item
+      if (activeHeading.link) {
+        const linkTop = activeHeading.link.offsetTop;
+        const linkHeight = activeHeading.link.offsetHeight;
+        const tocHeight = toc.offsetHeight;
+        const tocScrollTop = toc.scrollTop;
+        
+        if (linkTop < tocScrollTop) {
+          toc.scrollTo({ top: linkTop - 20, behavior: 'smooth' });
+        } else if (linkTop + linkHeight > tocScrollTop + tocHeight) {
+          toc.scrollTo({ top: linkTop - tocHeight + linkHeight + 20, behavior: 'smooth' });
+        }
+      }
+    }
+  }
+  
+  // Throttle scroll events
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveTOCItem();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // Initial update
+  updateActiveTOCItem();
+})();
+
