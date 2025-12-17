@@ -1574,8 +1574,10 @@ main {
   inset: 0;
   z-index: 1000;
   display: none;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 10vh;
+  overflow-y: auto;
 }
 
 .search-modal[aria-hidden="false"] {
@@ -1600,6 +1602,8 @@ main {
   box-shadow: var(--shadow-lg);
   animation: slideDown var(--transition-base);
   z-index: 1001;
+  margin-bottom: 10vh;
+  flex-shrink: 0;
 }
 
 .search-modal-close {
