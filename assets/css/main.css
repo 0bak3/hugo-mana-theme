@@ -1054,10 +1054,31 @@ main {
 }
 
 .list-title {
-  font-size: 2rem;
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
   margin: 0 0 var(--spacing-sm) 0;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.list-title-line1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
   color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.list-title-line2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--accent-light-purple);
+  text-stroke: 2px var(--accent-light-purple);
+  letter-spacing: -0.02em;
 }
 
 .list-description {
@@ -1339,10 +1360,13 @@ main {
 }
 
 .tags-title {
-  font-size: 2rem;
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
   margin-bottom: var(--spacing-lg);
-  color: var(--text-primary);
+  line-height: 1.1;
+  text-align: center;
 }
 
 .tags-help {
@@ -1863,10 +1887,13 @@ main {
 }
 
 .about-page-name {
-  font-size: 2.5rem;
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
   margin: 0 0 var(--spacing-md) 0;
-  color: var(--text-primary);
+  line-height: 1.1;
+  text-align: center;
 }
 
 .about-page-description {
