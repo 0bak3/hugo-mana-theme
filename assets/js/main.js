@@ -118,11 +118,28 @@
       return;
     }
     
+    // Format date for display
+    function formatDate(dateString) {
+      if (!dateString) return '';
+      try {
+        const date = new Date(dateString);
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+      } catch (e) {
+        return dateString;
+      }
+    }
+    
     searchResults.innerHTML = results.map(item => `
       <a href="${item.permalink}" class="search-result-item">
         <div class="search-result-title">${highlightMatch(item.title || '', query)}</div>
         ${item.summary ? `<div class="search-result-summary">${highlightMatch(item.summary.substring(0, 150), query)}...</div>` : ''}
-        ${item.date ? `<div class="search-result-date">${item.date}</div>` : ''}
+        ${item.date ? `<div class="search-result-date">
+          <svg class="search-result-date-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          ${formatDate(item.date)}
+        </div>` : ''}
       </a>
     `).join('');
     
