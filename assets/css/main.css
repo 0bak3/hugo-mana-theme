@@ -2002,7 +2002,6 @@ main {
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.4),
     0 0 10px rgba(160, 32, 240, 0.1);
-  overflow: hidden;
   display: none;
 }
 
