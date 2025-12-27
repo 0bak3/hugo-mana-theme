@@ -22,6 +22,10 @@
 
 <link rel="canonical" href="{{ .Permalink }}">
 
+{{ partial "head/robots.html" . }}
+{{ partial "head/opengraph.html" . }}
+{{ partial "head/json-ld.html" . }}
+
 <!-- Google Fonts: Space Grotesk (headings), Inter (body), Outfit (logo), and JetBrains Mono (code) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +34,10 @@
 {{ partial "head/css.html" . }}
 
 <!-- Favicons -->
-<link rel="icon" type="image/x-icon" href="/favicon/logo-transparent/favicon.ico">
+<!-- Root favicon for Google and other crawlers -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<!-- Additional favicon formats -->
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon/logo-transparent/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon/logo-transparent/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/logo-transparent/apple-touch-icon.png">
