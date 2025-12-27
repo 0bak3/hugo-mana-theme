@@ -35,7 +35,16 @@
   "description": {{ site.Params.description | jsonify }}{{ if site.Params.social }},
   "author": {
     "@type": "Person",
-    "name": {{ if site.Params.author }}{{ site.Params.author | jsonify }}{{ else }}{{ site.Title | jsonify }}{{ end }}
+    "name": {{ if site.Params.author }}{{ site.Params.author | jsonify }}{{ else }}{{ site.Title | jsonify }}{{ end }}{{ if site.Params.social.email }},
+    "email": {{ site.Params.social.email | jsonify }}{{ end }}
+  }{{ end }}{{ if site.Params.avatar }},
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.Title | jsonify }},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ site.Params.avatar.url | jsonify }}
+    }
   }{{ end }}
 }
 </script>
