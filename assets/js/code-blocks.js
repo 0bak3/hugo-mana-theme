@@ -31,6 +31,21 @@ function capitalizeLanguage(lang) {
 }
 
 /**
+ * Count lines in code block
+ */
+function countCodeLines(block) {
+  const codeElement = block.querySelector("code") || block;
+  const text = codeElement.textContent || codeElement.innerText || "";
+  // Split by newlines and count all lines
+  const lines = text.split("\n");
+  // Remove trailing empty line if present (common in code blocks)
+  if (lines.length > 0 && lines[lines.length - 1].trim().length === 0) {
+    lines.pop();
+  }
+  return lines.length;
+}
+
+/**
  * Initialize collapsible code blocks
  */
 function initCollapsibleCodeBlocks() {
@@ -56,11 +71,17 @@ function initCollapsibleCodeBlocks() {
     const shouldCollapse = block.hasAttribute("data-collapse") && 
                            block.getAttribute("data-collapse") === "true";
 
+    // Count lines to determine if collapse should be available
+    const lineCount = countCodeLines(block);
+    const isCollapsible = lineCount >= 5;
+
     // If not wrapped, create wrapper
     if (!wrapper) {
       wrapper = document.createElement("div");
-      // Default to expanded, unless data-collapse="true" is set
-      wrapper.className = shouldCollapse ? "code-block-wrapper collapsed" : "code-block-wrapper";
+      // Default to expanded, unless data-collapse="true" is set AND block is collapsible
+      // If block has less than 5 lines, ignore shouldCollapse
+      const shouldBeCollapsed = isCollapsible && shouldCollapse;
+      wrapper.className = shouldBeCollapsed ? "code-block-wrapper collapsed" : "code-block-wrapper";
       isNewWrapper = true;
     }
 
@@ -203,33 +224,38 @@ function initCollapsibleCodeBlocks() {
 
       buttonContainer.appendChild(copyButton);
 
-      // Toggle button
-      const toggle = document.createElement("button");
-      toggle.className = "code-block-toggle";
-      toggle.setAttribute("aria-label", shouldCollapse ? "Expand code block" : "Collapse code block");
-      toggle.setAttribute("aria-expanded", shouldCollapse ? "false" : "true");
-      toggle.setAttribute("title", shouldCollapse ? "Expand" : "Collapse");
-      toggle.innerHTML = `
-        <svg class="toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-        <span class="toggle-text">${shouldCollapse ? "Expand" : "Collapse"}</span>
-      `;
+      // Toggle button - only add if code block has 5 or more lines
+      if (isCollapsible) {
+        // Determine initial collapsed state (only if data-collapse="true" is set)
+        const initialCollapsed = shouldCollapse;
+        const toggle = document.createElement("button");
+        toggle.className = "code-block-toggle";
+        toggle.setAttribute("aria-label", initialCollapsed ? "Expand code block" : "Collapse code block");
+        toggle.setAttribute("aria-expanded", initialCollapsed ? "false" : "true");
+        toggle.setAttribute("title", initialCollapsed ? "Expand" : "Collapse");
+        toggle.innerHTML = `
+          <svg class="toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+          <span class="toggle-text">${initialCollapsed ? "Expand" : "Collapse"}</span>
+        `;
 
-      // Add toggle functionality
-      toggle.addEventListener("click", () => {
-        const isCollapsed = wrapper.classList.contains("collapsed");
-        wrapper.classList.toggle("collapsed");
-        toggle.setAttribute("aria-expanded", !isCollapsed);
-        toggle.setAttribute("title", isCollapsed ? "Collapse" : "Expand");
-        toggle.setAttribute("aria-label", isCollapsed ? "Collapse code block" : "Expand code block");
-        const toggleText = toggle.querySelector(".toggle-text");
-        if (toggleText) {
-          toggleText.textContent = isCollapsed ? "Collapse" : "Expand";
-        }
-      });
+        // Add toggle functionality
+        toggle.addEventListener("click", () => {
+          const isCollapsed = wrapper.classList.contains("collapsed");
+          wrapper.classList.toggle("collapsed");
+          toggle.setAttribute("aria-expanded", !isCollapsed);
+          toggle.setAttribute("title", isCollapsed ? "Collapse" : "Expand");
+          toggle.setAttribute("aria-label", isCollapsed ? "Collapse code block" : "Expand code block");
+          const toggleText = toggle.querySelector(".toggle-text");
+          if (toggleText) {
+            toggleText.textContent = isCollapsed ? "Collapse" : "Expand";
+          }
+        });
 
-      buttonContainer.appendChild(toggle);
+        buttonContainer.appendChild(toggle);
+      }
+
       headerBar.appendChild(buttonContainer);
 
       // Prepend header bar to wrapper
