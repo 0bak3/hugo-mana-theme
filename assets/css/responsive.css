@@ -72,19 +72,21 @@
     max-width: 100%;
   }
 
+  /* Show hamburger menu button on mobile */
+  .mobile-menu-toggle {
+    display: flex;
+    order: -1;
+  }
+
+  /* Hide regular menu list on mobile */
+  .header-menu .menu-list {
+    display: none;
+  }
+
+  /* Keep search and theme toggle visible on mobile */
   .header-menu {
     gap: var(--spacing-xs);
     flex-shrink: 0;
-  }
-
-  .menu-list {
-    gap: var(--spacing-xs);
-  }
-
-  .menu-link {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: 0.875rem;
-    white-space: nowrap;
   }
 
   .search-toggle,

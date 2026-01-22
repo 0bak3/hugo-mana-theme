@@ -34,19 +34,22 @@ function setTheme(theme) {
  * @param {string} theme - Current theme
  */
 function updateThemeToggleIcon(theme) {
-  const themeToggle = document.getElementById("theme-toggle");
-  if (!themeToggle) return;
+  // Update all theme toggle buttons (header and mobile menu)
+  const themeToggles = document.querySelectorAll(".theme-toggle");
+  if (!themeToggles.length) return;
 
-  const iconSun = themeToggle.querySelector(".icon-sun");
-  const iconMoon = themeToggle.querySelector(".icon-moon");
+  themeToggles.forEach((themeToggle) => {
+    const iconSun = themeToggle.querySelector(".icon-sun");
+    const iconMoon = themeToggle.querySelector(".icon-moon");
 
-  if (theme === THEME_LIGHT) {
-    iconSun?.setAttribute("style", "display: none;");
-    iconMoon?.setAttribute("style", "display: block;");
-  } else {
-    iconSun?.setAttribute("style", "display: block;");
-    iconMoon?.setAttribute("style", "display: none;");
-  }
+    if (theme === THEME_LIGHT) {
+      iconSun?.setAttribute("style", "display: none;");
+      iconMoon?.setAttribute("style", "display: block;");
+    } else {
+      iconSun?.setAttribute("style", "display: block;");
+      iconMoon?.setAttribute("style", "display: none;");
+    }
+  });
 }
 
 /**
@@ -63,8 +66,8 @@ function toggleTheme() {
  * Initialize theme toggle
  */
 function initThemeToggle() {
-  const themeToggle = document.getElementById("theme-toggle");
-  if (!themeToggle) return;
+  const themeToggles = document.querySelectorAll(".theme-toggle");
+  if (!themeToggles.length) return;
 
   // Set initial theme
   const initialTheme = getInitialTheme();
@@ -77,8 +80,10 @@ function initThemeToggle() {
     }
   });
 
-  // Toggle theme on button click
-  themeToggle.addEventListener("click", toggleTheme);
+  // Toggle theme on button click (all theme toggle buttons)
+  themeToggles.forEach((themeToggle) => {
+    themeToggle.addEventListener("click", toggleTheme);
+  });
 }
 
 // Initialize on page load
