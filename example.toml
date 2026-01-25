@@ -49,6 +49,20 @@ theme = "mana"
       # assetPath = "images/about-avatar.png"
       # enableResize = false  # Override general setting for about page
   
+  # Favicon configuration (optional)
+  # Keep `params.favicon` above for simple setups; use this block if you want full control.
+  # [params.favicons]
+  #  ico = "/favicon/logo-transparent/favicon.ico"
+  #  svg = "/favicon/logo-transparent/favicon.svg"
+  #  appleTouchIcon = "/favicon/logo-transparent/apple-touch-icon.png"
+  #  icon16 = "/favicon/logo-transparent/favicon-16x16.png"
+  #  icon32 = "/favicon/logo-transparent/favicon-32x32.png"
+  #  manifest = "/favicon/logo-transparent/site.webmanifest"
+  #  maskIcon = "/favicon/logo-transparent/safari-pinned-tab.svg"
+  #  maskIconColor = "#5bbad5"
+  #  msTileColor = "#2b5797"
+  #  themeColor = "#ffffff"
+  
   # Buy Me a Coffee Widget
   # Set enabled = true and provide your widget ID to use the floating widget
   # Leave enabled = false or unset to use a simple link instead
