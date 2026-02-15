@@ -9,7 +9,8 @@ let searchTimeout = null;
  */
 async function loadSearchIndex() {
   try {
-    const response = await fetch(SEARCH_INDEX_URL);
+    const indexUrl = window.MANA_SEARCH_INDEX_URL || SEARCH_INDEX_URL;
+    const response = await fetch(indexUrl);
     if (response.ok) {
       searchIndex = await response.json();
     } else {
