@@ -1,9 +1,47 @@
 baseURL = 'https://example.com/'
-languageCode = 'en-US'
-title = "Your Site Title"
 theme = "mana"
 
-# Theme configuration
+# Multilingual configuration (optional)
+# The language switcher appears in the header when 2+ languages are configured.
+# Each language uses contentDir = "content/<lang>" by default (e.g. content/en, content/he).
+# For RTL languages (e.g. Hebrew, Arabic), set languageDirection = "rtl".
+# Params and menus can be repeated per language under [languages.<lang>.params] and [languages.<lang>.menus.main].
+#
+# defaultContentLanguage = "en"
+#
+# [languages.en]
+#   languageCode = "en-US"
+#   languageName = "English"
+#   languageDirection = "ltr"
+#   contentDir = "content/en"
+#   weight = 1
+#   title = "Your Site Title"
+#   [languages.en.params]
+#     description = "Your site description"
+#     # ... other params
+#   [[languages.en.menus.main]]
+#     name = "Home"
+#     pageRef = "/"
+#     weight = 10
+#   # ... other menu items
+#
+# [languages.he]
+#   languageCode = "he-IL"
+#   languageName = "עברית"
+#   languageDirection = "rtl"
+#   contentDir = "content/he"
+#   weight = 2
+#   title = "כותרת האתר שלך"
+#   [languages.he.params]
+#     description = "תיאור האתר שלך"
+#   [[languages.he.menus.main]]
+#     name = "בית"
+#     pageRef = "/"
+#     weight = 10
+
+# Theme configuration (used when [languages] is not defined)
+languageCode = 'en-US'
+title = "Your Site Title"
 [params]
   description = "Your site description"
   author = "Your Name"
