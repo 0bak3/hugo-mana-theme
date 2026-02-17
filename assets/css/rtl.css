@@ -63,15 +63,15 @@
 }
 
 /* Post information: align to the right */
-.rtl .post-meta,
-.rtl .post-meta-info,
-.rtl .post-meta-inline {
+.rtl .post-meta {
+  align-items: flex-end;
   text-align: right;
-  flex-direction: row-reverse;
 }
 
 .rtl .post-meta-info,
 .rtl .post-meta-inline {
+  text-align: right;
+  flex-direction: row-reverse;
   justify-content: flex-end;
 }
 
