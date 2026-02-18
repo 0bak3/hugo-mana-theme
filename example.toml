@@ -37,11 +37,21 @@ defaultContentLanguage = "en"
 
 # =============================================================================
 # Shared params (same for all languages)
+# Root params act as fallback: if a language does not define a key in
+# [languages.X.params], the value from root [params] is used.
 # Language separation exists only for custom personalized text:
 # hero titles, description, 404 message, footer, menus
 # =============================================================================
 [params]
   enableIntegrity = false
+
+  # Default values - languages can override these in [languages.X.params]
+  description = "Your site description"
+  author = "Your Name"
+  heroTitleLine1 = "YOUR SITE NAME"
+  heroTitleLine2 = "YOUR TAGLINE"
+  custom404Message = "Sorry, the page you are looking for could not be found."
+  footerText = "Built with Hugo and Mana theme"
 
   [params.social]
     github = "https://github.com/yourusername"
@@ -104,6 +114,7 @@ defaultContentLanguage = "en"
   weight = 1
   title = "Your Site Title"
 
+  # Override root params when needed. Omit keys to use root defaults.
   [languages.en.params]
     description = "Your site description"
     author = "Your Name"
