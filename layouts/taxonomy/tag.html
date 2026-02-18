@@ -42,7 +42,7 @@
                 <div class="tag-post-content">
                   <div class="tag-post-header">
                     <h3 class="tag-post-title">{{ .Title }}</h3>
-                    <time class="tag-post-date">{{ .Date.Format "January 2" }}</time>
+                    <time class="tag-post-date">{{ .Date | time.Format ":date_short" }}</time>
                   </div>
 
                   {{ if .Summary }}

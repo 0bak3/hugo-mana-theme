@@ -11,7 +11,7 @@
   {{ $uniqueTags := $allTags | uniq | sort }}
   {{ $yearMonths := slice }}
   {{ range $allPosts }}
-    {{ $yearMonth := printf "%s %s" (.Date.Format "2006") (.Date.Format "January") }}
+    {{ $yearMonth := .Date.Format "2006-01" }}
     {{ $yearMonths = $yearMonths | append $yearMonth }}
   {{ end }}
   {{ $uniqueYearMonths := $yearMonths | uniq | sort }}
@@ -84,7 +84,8 @@
             aria-label="{{ i18n "yearMonth" }}">
             <option value="">{{ i18n "allDates" }}</option>
             {{ range $uniqueYearMonths }}
-              <option value="{{ . }}">{{ . }}</option>
+              {{ $t := (printf "%s-01" .) | time.AsTime }}
+              <option value="{{ . }}">{{ $t | time.Format "January 2006" }}</option>
             {{ end }}
           </select>
         </div>
@@ -104,7 +105,7 @@
         {{ partial "post-card.html" (dict
           "page" .
           "limit" 3
-          "dataYearMonth" (printf "%s %s" (.Date.Format "2006") (.Date.Format "January"))
+          "dataYearMonth" (.Date.Format "2006-01")
           "dataTags" $dataTags)
         }}
       {{ end }}

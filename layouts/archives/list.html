@@ -18,7 +18,7 @@
               <ul class="archive-posts">
                 {{ range .Pages }}
                   <li class="archive-post-item">
-                    <time class="archive-date">{{ .Date.Format "Jan 2" }}</time>
+                    <time class="archive-date">{{ .Date | time.Format ":date_short" }}</time>
                     <a href="{{ .RelPermalink }}" class="archive-link">{{ .Title }}</a>
                   </li>
                 {{ end }}
