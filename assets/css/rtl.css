@@ -153,3 +153,30 @@
   flex-direction: row;
   direction: rtl;
 }
+
+/* Search modal: RTL layout - icon right, input center, close/clear left */
+.rtl .search-input-wrapper {
+  flex-direction: row-reverse;
+}
+
+.rtl .search-input-icon {
+  left: auto;
+  right: var(--spacing-lg);
+}
+
+.rtl .search-input-clear {
+  right: auto;
+  left: calc(var(--spacing-lg) + 2rem + var(--spacing-sm));
+}
+
+.rtl .search-modal-close {
+  right: auto;
+  left: var(--spacing-lg);
+}
+
+.rtl .search-input {
+  text-align: right;
+  direction: rtl;
+  padding: 0 calc(var(--spacing-lg) + 1.5rem + var(--spacing-md)) 0
+    calc(var(--spacing-lg) + 2rem + var(--spacing-sm) + 2rem + var(--spacing-lg));
+}
