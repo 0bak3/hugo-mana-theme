@@ -91,7 +91,9 @@ Enable the Buy Me a Coffee floating widget:
 
 ### Menu Configuration
 
-Configure your site navigation menu:
+Configure your site navigation menu.
+
+**Single-language sites:** Use root-level `[[menus.main]]`:
 
 ```toml
 [[menus.main]]
@@ -114,6 +116,8 @@ Configure your site navigation menu:
   url = '/about/'
   weight = 40
 ```
+
+**Multilingual sites:** Define menus per language in `[[languages.<lang>.menus.main]]` (see [Multilingual Configuration](#multilingual-configuration)).
 
 ### Pagination
 
@@ -264,13 +268,19 @@ Enable JSON output for search functionality:
 
 The theme supports multiple languages with a language switcher in the header.
 
-**Add a language:** Add a `[languages.<lang>]` block and create `themes/mana/i18n/<lang>.toml` (if not already exists) with translated strings (copy from `en.toml`).
+**Required:** Set `defaultContentLanguage = "en"` (or your preferred default) in your config for multilingual sites to work correctly.
+
+**Add a language:** Add a `[languages.<lang>]` block and create `themes/mana/i18n/<lang>.toml` with translated strings. Copy from `en.toml` and translate each key. The theme includes `en.toml` and `he.toml` by default; add new files for additional languages.
 
 **Remove a language:** Delete the `[languages.<lang>]` block. With only one language, the switcher is hidden.
 
 **Content:** Place content in `content/<lang>/` (e.g. `content/en/`, `content/he/`).
 
-**RTL (Right-to-Left) languages:** For Hebrew, Arabic, or other RTL languages, set `languageDirection = "rtl"` in the language block. The theme will automatically apply RTL layout: mirrored navigation, right-aligned text, mobile menu sliding from the right, and proper alignment throughout.
+**RTL (Right-to-Left) support:** For Hebrew, Arabic, or other RTL languages, set `languageDirection = "rtl"` in the language block. The theme automatically applies:
+- Mirrored navigation and layout
+- Right-aligned text and proper text flow
+- Mobile menu sliding from the right
+- RTL-specific styles for filters, search, tables of contents, and post metadata
 
 **Buy Me a Coffee description:** Add `buyMeACoffeeDescription` to each language's i18n file instead of config.
 

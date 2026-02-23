@@ -8,7 +8,7 @@
           stroke-width="2"
           d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
       </svg>
-      {{ if eq site.Language.LanguageDirection "rtl" }}{{ .Date | time.Format "2006, 2 January" }}{{ else }}{{ .Date | time.Format ":date_long" }}{{ end }}
+      {{ .Date | time.Format ":date_long" }}
     </time>
 
     <span class="meta-separator">•</span>

@@ -41,10 +41,11 @@
 
           <!-- Months -->
           <div class="year-months">
-            {{ range .Pages.GroupByDate "January" }}
+            {{ range .Pages.GroupByDate "2006-01" }}
               <div class="month-group">
                 <div class="month-indicator">
-                  <span class="month-text">{{ .Key }}</span>
+                  {{ $monthTime := (printf "%s-01" .Key) | time.AsTime }}
+                  <span class="month-text">{{ $monthTime | time.Format ":date_long" }}</span>
                   <div class="month-line">
                     <span class="month-count-inline"
                       >{{ len .Pages }} {{ if eq (len .Pages) 1 }}{{ i18n "postSingular" }}{{ else }}{{ i18n "postPlural" }}{{ end }}</span

@@ -73,6 +73,8 @@ toggleToc = "הצג/הסתר תוכן עניינים"
 
 # Tags page
 tagsHelp = "לחץ על תגית כדי לראות פוסטים קשורים"
+searchNoResults = "לא נמצאו תוצאות"
+searchNoTagsFound = "לא נמצאו תגיות"
 
 # Buy Me a Coffee
 buyMeACoffeeDescription = "תמכו בי ב-Buy me a coffee!"

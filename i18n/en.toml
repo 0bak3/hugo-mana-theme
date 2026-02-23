@@ -73,6 +73,8 @@ toggleToc = "Toggle table of contents"
 
 # Tags page
 tagsHelp = "Click any tag to view related posts"
+searchNoResults = "No results found"
+searchNoTagsFound = "No tags found"
 
 # Buy Me a Coffee
 buyMeACoffeeDescription = "Support me on Buy me a coffee!"

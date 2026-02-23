@@ -53,7 +53,7 @@
       <div class="posts-filter" id="posts-filter-content">
         <div class="filter-group filter-group-tags">
           <label class="filter-label" for="tag-search-input">{{ i18n "tagsLabel" }}</label>
-          <div class="tag-search-container">
+          <div class="tag-search-container" data-no-tags="{{ i18n "searchNoTagsFound" }}">
             <input
               type="text"
               id="tag-search-input"
@@ -85,7 +85,7 @@
             <option value="">{{ i18n "allDates" }}</option>
             {{ range $uniqueYearMonths }}
               {{ $t := (printf "%s-01" .) | time.AsTime }}
-              <option value="{{ . }}">{{ $t | time.Format "January 2006" }}</option>
+              <option value="{{ . }}">{{ $t | time.Format ":date_long" }}</option>
             {{ end }}
           </select>
         </div>

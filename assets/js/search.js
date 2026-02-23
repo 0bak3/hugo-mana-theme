@@ -87,7 +87,9 @@ function performSearch(query) {
     .slice(0, SEARCH_RESULTS_LIMIT);
 
   if (results.length === 0) {
-    searchResults.innerHTML = '<div class="search-result-empty">No results found</div>';
+    const noResultsMsg =
+      document.getElementById("search-modal")?.dataset?.noResults || "No results found";
+    searchResults.innerHTML = `<div class="search-result-empty">${noResultsMsg}</div>`;
     toggleSearchResultsVisibility();
     return;
   }
